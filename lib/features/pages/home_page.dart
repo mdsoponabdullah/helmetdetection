@@ -8,6 +8,7 @@ import 'package:helmetdetection/features/pages/blogs.dart';
 import 'package:helmetdetection/features/pages/rating_page.dart';
 import 'package:helmetdetection/features/pages/video_page.dart';
 import 'package:helmetdetection/features/pages/weather_page.dart';
+import 'package:helmetdetection/features/pages/weather_page1.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../global/common/toast.dart';
@@ -373,7 +374,7 @@ class _HomePage extends State<HomePage> {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => WeatherPage()));
+                                              builder: (context) => WeatherPage1()));
                                     },
                                   ),
                                   IconTextCard(
@@ -391,6 +392,24 @@ class _HomePage extends State<HomePage> {
                                               "User is signed out successfully");
                                     },
                                   ),
+                                ]),
+                            const SizedBox(
+                              height: 20,
+                            ),   Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.center,
+                                children: [
+                                  IconTextCard(
+                                    title: 'Lat&Long',
+                                    iconData: Icons.location_city,
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => const LatituteLogitute()));
+                                    },
+                                  ),
+
                                 ]),
                             const SizedBox(
                               height: 50,
