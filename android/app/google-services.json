@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "60548225769",
+    "project_id": "helmetdetection-93662",
+    "storage_bucket": "helmetdetection-93662.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:60548225769:android:9e66697d976772f0b9ae78",
+        "android_client_info": {
+          "package_name": "com.detection.detection"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwF2upSDn-kURLfEkbi8VGDHwxyx5Lxeo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:60548225769:android:2bdde254f196d4f3b9ae78",
+        "android_client_info": {
+          "package_name": "com.example.helmetdetection.helmetdetection"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwF2upSDn-kURLfEkbi8VGDHwxyx5Lxeo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
