@@ -17,6 +17,8 @@ import '../user_auth/firebase_auth_implementation/firebase_auth_services.dart';
 import '../widgets/circular_image_box.dart';
 import '../widgets/icon_card_widget.dart';
 import '../widgets/loading_widget.dart';
+import 'demo.dart';
+import 'helmet_detect_page.dart';
 import 'latitute_longitute.dart';
 import 'map_page.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -293,11 +295,11 @@ class _HomePage extends State<HomePage> {
                                     title: 'Detection',
                                     iconData: Icons.search,
                                     onTap: () {
-                                      // Navigator.push(
-                                      //     context,
-                                      //     MaterialPageRoute(
-                                      //         builder: (context) =>
-                                      //             const BangladeshPlaces()));
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const HelmetDetectionPage()));
                                     },
                                   ),
                                 ]),
