@@ -141,21 +141,27 @@ class _HelmetDetectionPage extends State<HelmetDetectionPage> {
 
   classifyImage(File? image) async {
     var output = await Tflite.runModelOnImage(
-        path: image!.path,
-        imageMean: 0.0,
-        imageStd: 255.0,
-        numResults: 5,
-        threshold: 0.2,
-        asynch: true);
+      path: image!.path,
+      numResults: 2,
+      threshold: 0.5,
+      imageMean: 127.5,
+      imageStd: 127.5,
+      asynch: true,
+    );
     setState(() {
       _loading = false;
       _outputs = output;
-      print("output\n");
-      //print(_outputs![0]['label']);
-      label = _outputs![0]['label'];
-      print(_outputs);
+      print("output: $_outputs");
+      if (_outputs != null && _outputs!.isNotEmpty) {
+        label = _outputs![0]['label'];
+        print("Label: $label");
+      } else {
+        print("No output detected or empty");
+        label = null; // Set label to null if no output or empty output
+      }
     });
   }
+
 
   @override
   void dispose() {
@@ -283,7 +289,7 @@ class _HelmetDetectionPage extends State<HelmetDetectionPage> {
                                   .width *
                                   .9,
                               child: Column(
-                                children: [
+                                children:[
                                   Text(
                                     _outputs![0]["label"]
                                         .substring(1) +

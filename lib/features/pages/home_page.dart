@@ -18,6 +18,7 @@ import '../widgets/circular_image_box.dart';
 import '../widgets/icon_card_widget.dart';
 import '../widgets/loading_widget.dart';
 import 'demo.dart';
+import 'demo1.dart';
 import 'helmet_detect_page.dart';
 import 'latitute_longitute.dart';
 import 'map_page.dart';
@@ -409,6 +410,17 @@ class _HomePage extends State<HomePage> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) => const LatituteLogitute()));
+                                    },
+                                  ),
+
+                               IconTextCard(
+                                    title: 'Lat&Long',
+                                    iconData: Icons.location_city,
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>  Detection()));
                                     },
                                   ),
 
