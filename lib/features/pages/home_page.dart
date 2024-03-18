@@ -17,8 +17,11 @@ import '../user_auth/firebase_auth_implementation/firebase_auth_services.dart';
 import '../widgets/circular_image_box.dart';
 import '../widgets/icon_card_widget.dart';
 import '../widgets/loading_widget.dart';
+import 'blogs2.dart';
+import 'crystal_report.dart';
 import 'demo.dart';
 import 'demo1.dart';
+import 'graph_ql.dart';
 import 'helmet_detect_page.dart';
 import 'latitute_longitute.dart';
 import 'map_page.dart';
@@ -60,7 +63,7 @@ class _HomePage extends State<HomePage> {
           backgroundColor: Colors.blue,
           elevation: 10,
           title: const Text(
-            "Home  Page",
+            "Home",
             style: TextStyle(color: Colors.white),
           ),
         ),
@@ -232,48 +235,6 @@ class _HomePage extends State<HomePage> {
                                 print("Tap Event");
                               },
                             ),
-                            // Center(
-                            //     child: Text(
-                            //   "Username : " + userData['username'],
-                            //   style: const TextStyle(
-                            //       fontSize: 15,
-                            //       fontWeight: FontWeight.bold,
-                            //       color: Colors.blue),
-                            // )),
-                            // Center(
-                            //     child: Text(
-                            //   "Division: " + userData['selectedDivision'] ?? "",
-                            //   style: const TextStyle(
-                            //       fontSize: 15,
-                            //       fontWeight: FontWeight.bold,
-                            //       color: Colors.blue),
-                            // )),
-                            // Center(
-                            //     child: Text(
-                            //   "District : " + userData['selectedDistrict'] ??
-                            //       "",
-                            //   style: const TextStyle(
-                            //       fontSize: 15,
-                            //       fontWeight: FontWeight.bold,
-                            //       color: Colors.blue),
-                            // )),
-                            // Center(
-                            //     child: Text(
-                            //   "Date Of Birth : " + userData['dateOfBirth'] ??
-                            //       "",
-                            //   style: const TextStyle(
-                            //       fontSize: 15,
-                            //       fontWeight: FontWeight.bold,
-                            //       color: Colors.blue),
-                            // )),
-                            // Center(
-                            //     child: Text(
-                            //   "Email : " + userData['email'],
-                            //   style: const TextStyle(
-                            //       fontSize: 15,
-                            //       fontWeight: FontWeight.bold,
-                            //       color: Colors.blue),
-                            // )),
                             const SizedBox(
                               height: 30,
                             ),
@@ -358,8 +319,8 @@ class _HomePage extends State<HomePage> {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => RatingPage(
-                                                  userId: widget.userId)));
+                                              builder: (context) => const CrystalReport(
+                                                  )));
                                     },
                                   ),
                                 ]),
@@ -414,13 +375,42 @@ class _HomePage extends State<HomePage> {
                                   ),
 
                                IconTextCard(
+                                    title: 'GraphQL',
+                                    iconData: Icons.auto_graph,
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>  CountryListPage()));
+                                    },
+                                  ),
+
+                                ]),
+                            const SizedBox(
+                              height: 50,
+                            ),  Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.center,
+                                children: [
+                                  IconTextCard(
                                     title: 'Lat&Long',
                                     iconData: Icons.location_city,
                                     onTap: () {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) =>  Detection()));
+                                              builder: (context) => const LatituteLogitute()));
+                                    },
+                                  ),
+
+                               IconTextCard(
+                                    title: 'GraphQL',
+                                    iconData: Icons.auto_graph,
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>  BlogsPage2(userId: widget.userId)));
                                     },
                                   ),
 

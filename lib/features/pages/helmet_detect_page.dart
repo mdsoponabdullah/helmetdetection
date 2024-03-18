@@ -28,22 +28,10 @@ class _HelmetDetectionPage extends State<HelmetDetectionPage> {
 
   UploadTask? task;
   File? file;
-  File? _photo;
-  final ImagePicker _picker = ImagePicker();
-  File? _pickedImage;
   dynamic imgDownload;
   dynamic label;
   //var late urlDownload;
 
-  static UploadTask? uploadBytes(String destination, Uint8List data) {
-    try {
-      final ref = FirebaseStorage.instance.ref(destination);
-
-      return ref.putData(data);
-    } on FirebaseException catch (e) {
-      return null;
-    }
-  }
 
   static UploadTask? uploadingFile(String destination, File file) {
     try {
