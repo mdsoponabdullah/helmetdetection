@@ -1,4 +1,3 @@
-import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -6,10 +5,12 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-//import 'package:tflite/tflite.dart';
 import 'package:tflite_v2/tflite_v2.dart';
 import 'dart:io';
 import 'package:path/path.dart';
+
+import '../../global/common/toast.dart';
+import '../image_upload_handle/image_upload_control.dart';
 
 class HelmetDetectionPage extends StatefulWidget {
   const HelmetDetectionPage({super.key});
@@ -98,10 +99,9 @@ class _HelmetDetectionPage extends State<HelmetDetectionPage> {
         .set({
       "email": email,
       "img": imgDownload,
-      "like": like,
       "date": date,
       "label": label,
-      "likeBy": []
+
     })
         .whenComplete(() => print("complete"))
         .catchError((error) => print("somethimg is wrong. $error"));
@@ -325,5 +325,52 @@ class _HelmetDetectionPage extends State<HelmetDetectionPage> {
         ),
       ),
     );
+  }
+
+
+  Future selectFile1() async {
+
+    try {
+      final picker = ImagePicker();
+      final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+      //.getImage(source: ImageSource.gallery);
+      if (pickedImage != null) {
+        final pickedImageFile = File(pickedImage.path);
+        setState(() {
+          _image = pickedImageFile;
+          file = pickedImageFile;
+        });
+        if (kDebugMode) {
+          print("Image selected successfully");
+        }
+        if (kDebugMode) {
+          print(file);
+        }
+        ImageUploadControl obj = ImageUploadControl();
+        imgDownload = await obj.controlImage(file);
+        classifyImage(_image);
+        print(" $imgDownload");
+
+        CommonMessage.showToast(message: "Image is Uploaded successfully");
+
+
+
+
+
+
+        // uploadFile();
+      } else {
+        if (kDebugMode) {
+          print("User canceled image selection or encountered an issue.");
+        }
+      }
+    } catch (err) {
+      if (kDebugMode) {
+        print("Exception occurred:");
+      }
+      if (kDebugMode) {
+        print(err);
+      }
+    }
   }
 }

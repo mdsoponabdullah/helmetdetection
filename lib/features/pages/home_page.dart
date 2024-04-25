@@ -147,7 +147,7 @@ class _HomePage extends State<HomePage> {
                               animatedTexts: [
                                 TypewriterAnimatedText(
                                   "Username : " + userData['username'],
-                                  textStyle:  TextStyle(
+                                  textStyle: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                       color: Color.fromRGBO(
@@ -159,7 +159,7 @@ class _HomePage extends State<HomePage> {
                                 TypewriterAnimatedText(
                                   "Division: " + userData['selectedDivision'] ??
                                       "",
-                                  textStyle:  TextStyle(
+                                  textStyle: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                       color: Color.fromRGBO(
@@ -172,7 +172,7 @@ class _HomePage extends State<HomePage> {
                                   "District : " +
                                           userData['selectedDistrict'] ??
                                       "",
-                                  textStyle:  TextStyle(
+                                  textStyle: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                       color: Color.fromRGBO(
@@ -182,9 +182,9 @@ class _HomePage extends State<HomePage> {
                                           1)),
                                 ),
                                 TypewriterAnimatedText(
-                                  "Upozela: " + userData['selectedDistrict']??""
-                                      ,
-                                  textStyle:  TextStyle(
+                                  "Upozela: " + userData['selectedDistrict'] ??
+                                      "",
+                                  textStyle: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                       color: Color.fromRGBO(
@@ -197,7 +197,7 @@ class _HomePage extends State<HomePage> {
                                   "Date Of Birth : " +
                                           userData['dateOfBirth'] ??
                                       "",
-                                  textStyle:  TextStyle(
+                                  textStyle: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                       color: Color.fromRGBO(
@@ -208,7 +208,7 @@ class _HomePage extends State<HomePage> {
                                 ),
                                 TypewriterAnimatedText(
                                   "Email : " + userData['email'],
-                                  textStyle:  TextStyle(
+                                  textStyle: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                       color: Color.fromRGBO(
@@ -221,7 +221,7 @@ class _HomePage extends State<HomePage> {
                                   "Date Of Birth : " +
                                           userData['dateOfBirth'] ??
                                       "",
-                                  textStyle:  TextStyle(
+                                  textStyle: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                       color: Color.fromRGBO(
@@ -319,8 +319,37 @@ class _HomePage extends State<HomePage> {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => const CrystalReport(
-                                                  )));
+                                              builder: (context) =>
+                                                  const CrystalReport()));
+                                    },
+                                  ),
+                                ]),
+                            const SizedBox(
+                              height: 14,
+                            ),
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  IconTextCard(
+                                    title: 'Lat&Long',
+                                    iconData: Icons.location_city,
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  LatituteLogitute()));
+                                    },
+                                  ),
+                                  IconTextCard(
+                                    title: 'GraphQL',
+                                    iconData: Icons.auto_graph,
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>CountryListPage()));
                                     },
                                   ),
                                 ]),
@@ -338,14 +367,16 @@ class _HomePage extends State<HomePage> {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => WeatherPage1()));
+                                              builder: (context) =>
+                                                  WeatherPage1()));
                                     },
                                   ),
                                   IconTextCard(
                                     title: 'Log Out',
                                     iconData: Icons.logout,
                                     onTap: () async {
-                                       SharedPreferences prefs = await SharedPreferences.getInstance();
+                                      SharedPreferences prefs =
+                                          await SharedPreferences.getInstance();
 
                                       await prefs.remove('email');
 
@@ -359,62 +390,62 @@ class _HomePage extends State<HomePage> {
                                 ]),
                             const SizedBox(
                               height: 20,
-                            ),   Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.center,
-                                children: [
-                                  IconTextCard(
-                                    title: 'Lat&Long',
-                                    iconData: Icons.location_city,
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => const LatituteLogitute()));
-                                    },
-                                  ),
-
-                               IconTextCard(
-                                    title: 'GraphQL',
-                                    iconData: Icons.auto_graph,
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>  CountryListPage()));
-                                    },
-                                  ),
-
-                                ]),
-                            const SizedBox(
-                              height: 50,
-                            ),  Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.center,
-                                children: [
-                                  IconTextCard(
-                                    title: 'Lat&Long',
-                                    iconData: Icons.location_city,
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => const LatituteLogitute()));
-                                    },
-                                  ),
-
-                               IconTextCard(
-                                    title: 'GraphQL',
-                                    iconData: Icons.auto_graph,
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>  BlogsPage2(userId: widget.userId)));
-                                    },
-                                  ),
-
-                                ]),
+                            ),
+                            // Row(
+                            //     mainAxisAlignment: MainAxisAlignment.center,
+                            //     children: [
+                            //       IconTextCard(
+                            //         title: 'Lat&Long',
+                            //         iconData: Icons.location_city,
+                            //         onTap: () {
+                            //           Navigator.push(
+                            //               context,
+                            //               MaterialPageRoute(
+                            //                   builder: (context) =>
+                            //                       const LatituteLogitute()));
+                            //         },
+                            //       ),
+                            //       IconTextCard(
+                            //         title: 'GraphQL',
+                            //         iconData: Icons.auto_graph,
+                            //         onTap: () {
+                            //           Navigator.push(
+                            //               context,
+                            //               MaterialPageRoute(
+                            //                   builder: (context) =>
+                            //                       CountryListPage()));
+                            //         },
+                            //       ),
+                            //     ]),
+                            // const SizedBox(
+                            //   height: 50,
+                            // ),
+                            // Row(
+                            //     mainAxisAlignment: MainAxisAlignment.center,
+                            //     children: [
+                            //       IconTextCard(
+                            //         title: 'Lat&Long',
+                            //         iconData: Icons.location_city,
+                            //         onTap: () {
+                            //           Navigator.push(
+                            //               context,
+                            //               MaterialPageRoute(
+                            //                   builder: (context) =>
+                            //                       const LatituteLogitute()));
+                            //         },
+                            //       ),
+                            //       IconTextCard(
+                            //         title: 'GraphQL',
+                            //         iconData: Icons.auto_graph,
+                            //         onTap: () {
+                            //           Navigator.push(
+                            //               context,
+                            //               MaterialPageRoute(
+                            //                   builder: (context) => BlogsPage2(
+                            //                       userId: widget.userId)));
+                            //         },
+                            //       ),
+                            //     ]),
                             const SizedBox(
                               height: 50,
                             ),
