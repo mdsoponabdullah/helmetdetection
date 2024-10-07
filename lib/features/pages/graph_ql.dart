@@ -8,7 +8,7 @@ class CountryListPage extends StatefulWidget {
 
 class _CountryListPageState extends State<CountryListPage> {
   int _currentPage = 1;
-  int _countriesPerPage = 10;
+  int _countriesPerPage = 15;
   List<dynamic> _countries = [];
 
   @override
@@ -40,12 +40,13 @@ class _CountryListPageState extends State<CountryListPage> {
             document: gql("""
               query GetCountries {
                 countries {
-                  name
+                  name,capital
                 }
               }
             """),
           ),
-          builder: (QueryResult result, {Refetch? refetch, FetchMore? fetchMore}) {
+          builder: (QueryResult result,
+              {Refetch? refetch, FetchMore? fetchMore}) {
             if (result.hasException) {
               return Text(result.exception.toString());
             }
@@ -58,59 +59,139 @@ class _CountryListPageState extends State<CountryListPage> {
 
             final int startIndex = (_currentPage - 1) * _countriesPerPage;
             final int endIndex = startIndex + _countriesPerPage;
-            final displayedCountries = _countries.sublist(startIndex, endIndex.clamp(0, _countries.length));
+            final displayedCountries = _countries.sublist(
+                startIndex, endIndex.clamp(0, _countries.length));
 
-            return Column(
-              children: [
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: displayedCountries.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final country = displayedCountries[index];
-                      return ListTile(
-                        title: Text(country['name']),
-                      );
-                    },
+            return Padding(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  // Table Header
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                    child: Table(
+                      columnWidths: const {
+                        0: FlexColumnWidth(2), // Country column width
+                        1: FlexColumnWidth(1), // Capital column width
+                      },
+                      border: TableBorder.all(
+                          width: 1.0, color: Colors.grey), // Table borders
+                      children: const [
+                        TableRow(
+                          decoration: BoxDecoration(color: Colors.blueAccent),
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                "Country",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                "Capital",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                        onPressed: _currentPage > 1 ? () => _loadPreviousPage() : null,
-                        child: Text('Previous'),
-                      ),
-                      SizedBox(width: 16),
-                      Expanded(
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              for (int i = 1; i <= _getTotalPages(); i++)
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    shape: CircleBorder(), backgroundColor: i == _currentPage ? Colors.blue : null,
-                                    padding: EdgeInsets.all(12.0),
+
+                  // Table Rows (Countries and Capitals)
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: displayedCountries.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final country = displayedCountries[index];
+                        return Table(
+                          columnWidths: const {
+                            0: FlexColumnWidth(2), // Country column width
+                            1: FlexColumnWidth(1), // Capital column width
+                          },
+                          border: TableBorder.all(
+                              width: 1.0, color: Colors.grey), // Table borders
+                          children: [
+                            TableRow(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    country['name'] ?? "N/A",
+                                    style: TextStyle(fontSize: 16),
                                   ),
-                                  onPressed: () => _loadPage(i),
-                                  child: Text(i.toString(), style: TextStyle(color: i == _currentPage ? Colors.white : Colors.black)),
                                 ),
-                            ],
+                                Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    country['capital'] ?? "N/A",
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          onPressed: _currentPage > 1
+                              ? () => _loadPreviousPage()
+                              : null,
+                          child: Text('Previous'),
+                        ),
+                        SizedBox(width: 16),
+                        Expanded(
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                for (int i = 1; i <= _getTotalPages(); i++)
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      shape: CircleBorder(),
+                                      backgroundColor: i == _currentPage
+                                          ? Colors.blue
+                                          : null,
+                                      padding: EdgeInsets.all(12.0),
+                                    ),
+                                    onPressed: () => _loadPage(i),
+                                    child: Text(i.toString(),
+                                        style: TextStyle(
+                                            color: i == _currentPage
+                                                ? Colors.white
+                                                : Colors.black)),
+                                  ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(width: 16),
-                      ElevatedButton(
-                        onPressed: _currentPage < _getTotalPages() ? () => _loadNextPage() : null,
-                        child: Text('Next'),
-                      ),
-                    ],
+                        SizedBox(width: 16),
+                        ElevatedButton(
+                          onPressed: _currentPage < _getTotalPages()
+                              ? () => _loadNextPage()
+                              : null,
+                          child: Text('Next'),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             );
           },
         ),

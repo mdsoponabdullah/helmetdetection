@@ -17,6 +17,7 @@ import '../user_auth/firebase_auth_implementation/firebase_auth_services.dart';
 import '../widgets/circular_image_box.dart';
 import '../widgets/icon_card_widget.dart';
 import '../widgets/loading_widget.dart';
+import 'animation_page.dart';
 import 'blogs2.dart';
 import 'crystal_report.dart';
 import 'demo.dart';
@@ -372,11 +373,40 @@ class _HomePage extends State<HomePage> {
                                     },
                                   ),
                                   IconTextCard(
+                                    title: 'Sass',
+                                    iconData: Icons.css,
+                                    onTap: () async {
+
+                                      Navigator.pushNamed(context, "/login");
+
+                                    },
+                                  ),
+                                ]),
+                            const SizedBox(
+                              height: 20,
+                            ),
+
+                            Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  IconTextCard(
+                                    title: 'Animation',
+                                    iconData: Icons.animation,
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                              MyAnimation() ));
+                                    },
+                                  ),
+                                  IconTextCard(
                                     title: 'Log Out',
                                     iconData: Icons.logout,
                                     onTap: () async {
                                       SharedPreferences prefs =
-                                          await SharedPreferences.getInstance();
+                                      await SharedPreferences.getInstance();
 
                                       await prefs.remove('email');
 
@@ -384,13 +414,10 @@ class _HomePage extends State<HomePage> {
                                       Navigator.pushNamed(context, "/login");
                                       CommonMessage.showToast(
                                           message:
-                                              "User is signed out successfully");
+                                          "User is signed out successfully");
                                     },
                                   ),
                                 ]),
-                            const SizedBox(
-                              height: 20,
-                            ),
                             // Row(
                             //     mainAxisAlignment: MainAxisAlignment.center,
                             //     children: [
