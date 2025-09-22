@@ -244,6 +244,34 @@ class _HomePage extends State<HomePage> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   IconTextCard(
+                                    title: 'weather',
+                                    iconData: Icons.sunny,
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  WeatherPage1()));
+                                    },
+                                  ),
+                                  IconTextCard(
+                                    title: 'Cucumber',
+                                    iconData: Icons.food_bank_rounded,
+                                    onTap: () async {
+
+                                      Navigator.pushNamed(context, "/CucumberInfoPage");
+
+                                    },
+                                  ),
+                                ]),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  IconTextCard(
                                     title: 'Blogs',
                                     iconData: Icons.post_add,
                                     onTap: () {
@@ -357,34 +385,7 @@ class _HomePage extends State<HomePage> {
                             const SizedBox(
                               height: 14,
                             ),
-                            Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  IconTextCard(
-                                    title: 'weather',
-                                    iconData: Icons.sunny,
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  WeatherPage1()));
-                                    },
-                                  ),
-                                  IconTextCard(
-                                    title: 'Sass',
-                                    iconData: Icons.css,
-                                    onTap: () async {
-
-                                      Navigator.pushNamed(context, "/login");
-
-                                    },
-                                  ),
-                                ]),
-                            const SizedBox(
-                              height: 20,
-                            ),
+                            
 
                             Row(
                                 mainAxisAlignment:

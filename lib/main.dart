@@ -8,6 +8,7 @@ import 'features/user_auth/presentation/pages/home_page2.dart';
 
 import 'features/user_auth/presentation/pages/login_page.dart';
 import 'features/user_auth/presentation/pages/signup_page.dart';
+import 'features/pages/CucumberInfoPage.dart';
 import 'firebase_options.dart';
 void  main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Helmet Detection",
+      title: "Cucumber",
       routes: {
         '/': (context) =>   const SplashScreen(
           // Here, you can decide whether to show the LoginPage or HomePage based on user authentication
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
         '/signUp': (context) => const SignUpPage(),
         //'/home': (context) =>  HomePage(),
         '/home2': (context) => const HomePage2(),
-      },
+        '/CucumberInfoPage': (context) => const CucumberInfoPage(),
+      }
     );
   }
 }
