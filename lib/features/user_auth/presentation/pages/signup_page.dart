@@ -216,7 +216,7 @@ class _SignUpPage extends State<SignUpPage> {
               alignment: Alignment.center,
               child: Center(
                 child: Column(children: [
-                  Image(image: AssetImage('assets/helmet1.png')),
+                  Image(image: AssetImage('assets/cucumber.png')),
                   CustomTextField(
                     controller: _userNameController,
                     hintText: "User Name",

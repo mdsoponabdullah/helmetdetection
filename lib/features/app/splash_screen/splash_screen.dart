@@ -65,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         fontWeight: FontWeight.bold),
                   ),
                   TypewriterAnimatedText(
-                    'helmet Detection App',
+                    'Cucumber App',
                     textStyle: const TextStyle(
                         color: Colors.pink,
                         fontSize: 30,
